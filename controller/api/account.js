@@ -1,6 +1,6 @@
 import Base from "./Base";
-import { getToken } from "../middlewares/jwt";
-import userModel from "../models/user";
+import { getToken } from "../../middlewares/jwt";
+import userModel from "../../models/user";
 class Account extends Base {
   constructor() {
     super();

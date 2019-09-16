@@ -1,4 +1,4 @@
-import { checkToken } from '../middlewares/jwt'
+import { checkToken } from '../../middlewares/jwt'
 class Base{
     constructor(){
     
