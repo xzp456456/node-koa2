@@ -1,10 +1,18 @@
+import { checkToken } from '../middlewares/jwt'
 class Base{
     constructor(){
-
+    
     }
-    async demo(param){
-        console.log(param)
-    }
+    async cheLogin(token){
+      let user = await checkToken(token)
+      if(user){
+        return user
+      } else {
+        return {
+          msg:'login is pail'
+        }
+      }
+  }
 
 }
 

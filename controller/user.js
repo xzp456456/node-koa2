@@ -1,8 +1,9 @@
 import Base from './Base'
-import indexModel from '../models/index'
-class index extends Base {
+import userModel from '../models/user'
+class user extends Base {
         constructor(){
             super()
+           
             this.action = this.action.bind(this)
         }
         async action(ctx,next){
@@ -10,7 +11,7 @@ class index extends Base {
         }
         async join(ctx,next){
             console.log(ctx.request.body)
-           let data =await new indexModel({
+           let data =await new userModel({
                user:ctx.request.body.user
            }).save()
            if(data){
@@ -26,7 +27,7 @@ class index extends Base {
            }
         }
         async find(ctx,next){
-            let data =await indexModel.find()
+            let data =await userModel.find()
             if(data){
                 ctx.body = {
                     status:1,
@@ -44,4 +45,4 @@ class index extends Base {
 }
 
 
-export default new index()
+export default new user()
