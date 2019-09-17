@@ -52,11 +52,11 @@ app.use(
   koajwt({
     secret: secret
   }).unless({
-    path: [/^\/login/, /^\/register/, /^\//,/^\/demo/]
+    path: [/^\/login/, /^\/register/, /^\//, /\admin\/index/]
   })
 );
 require("./mongodb/db");
-require("./routes/index")(app);
+require("./routes/api/index")(app);
 
 // error-handling
 app.on("error", (err, ctx) => {

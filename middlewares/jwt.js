@@ -18,6 +18,7 @@ const checkToken = (token) =>{
         jwt.verify(token, secret, (error, decoded) => {
             if(error) {
                 console.log(error.message);
+                reject(error)
             }
             reslove(decoded)
         })

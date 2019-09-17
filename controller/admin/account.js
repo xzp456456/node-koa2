@@ -1,11 +1,10 @@
 import Base from "./Base";
-import AdminuserModel from "../../models/adminUser";
-import { createContext } from "vm";
+import AdminuserModel from "../../models/admin/adminUser";
 class user extends Base {
   constructor() {
     super();
   }
-  async adminLogin(ctx) {
+  async loginPage(ctx) {
       await ctx.render('login')
   }
   async login(ctx, next) {
