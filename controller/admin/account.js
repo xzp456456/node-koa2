@@ -5,23 +5,21 @@ class user extends Base {
     super();
   }
   async loginPage(ctx) {
-      await ctx.render('login')
+    await ctx.render('login')
   }
   async login(ctx, next) {
     const { account, password } = ctx.request.body;
-    let data = await AdminuserModel.find({
+    let data = await AdminuserModel.findOne({
       account,
       password
     });
     if (data) {
-      ctx.body = {
-        status: 1,
-        msg: "login is success"
-      };
+    ctx.body = { status: 1, msg: "登录成功" };
+
     } else {
+      console.log(ctx.session)
       ctx.body = {
-        status: 0,
-        msg: "login is pail"
+        status: 0, msg: "登录失败"
       };
     }
   }

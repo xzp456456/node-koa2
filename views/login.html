@@ -1,3 +1,66 @@
-<div>
-    11111
+<style>
+    .login {
+        width: 500px;
+        height: 250px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        box-shadow: 2px 2px 4px black;
+        padding: 40px 40px 20px 20px;
+    }
+
+    .ml {
+        margin-left: 110px;
+    }
+</style>
+
+<div class="login">
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户名</label>
+        <div class="layui-input-block">
+            <input type="text" id="account" required lay-verify="required" placeholder="请输入用户名" autocomplete="off"
+                class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">密&nbsp;&nbsp;&nbsp;&nbsp;码</label>
+        <div class="layui-input-block">
+            <input type="password" id="password" required lay-verify="required" placeholder="请输入密码" autocomplete="off"
+                class="layui-input">
+        </div>
+    </div>
+    <button type="button" onclick="login()" class="layui-btn ml">登录</button>
 </div>
+<script>
+    layui.use('layer', function () {
+        var layer = layui.layer;
+
+    });
+    function login() {
+        if ($('#account').val() == "") {
+            layer.alert('用户名不能为空')
+            return
+        }
+        if ($('#password').val() == "") {
+            layer.alert('密码不能为空')
+            return
+        }
+        $.ajax({
+            method: "post",
+            url: '/admin/AccountLogin',
+            data: {
+                account: $('#account').val(),
+                password: $('#password').val()
+            },
+            success: function (data) {
+                if (data.status) {
+                    window.location.href = '/admin/index'
+                } else {
+                    layer.alert(data.msg)
+                }
+            }
+        })
+    }
+</script>

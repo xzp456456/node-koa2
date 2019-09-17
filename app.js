@@ -7,10 +7,22 @@ const onerror = require("koa-onerror");
 const bodyparser = require("koa-bodyparser");
 const logger = require("koa-logger");
 const koajwt = require("koa-jwt");
+const session = require('koa-session');
 const { secret } = require("./config/index");
 // error handler
 onerror(app);
 
+app.keys = ['some secret hurr'];
+const CONFIG = {
+   key: 'koa:sess',   //cookie key (default is koa:sess)
+   maxAge: 86400000,  // cookie的过期时间 maxAge in ms (default is 1 days)
+   overwrite: true,  //是否可以overwrite    (默认default true)
+   httpOnly: false, //cookie是否只有服务器端可以访问 httpOnly or not (default true)
+   signed: true,   //签名默认true
+   rolling: false,  //在每次请求时强行设置cookie，这将重置cookie过期时间（默认：false）
+   renew: false,  //(boolean) renew session when session is nearly expired,
+};
+app.use(session(CONFIG, app));
 // middlewares
 app.use(
   bodyparser({
@@ -57,6 +69,7 @@ app.use(
 );
 require("./mongodb/db");
 require("./routes/api/index")(app);
+require("./routes/admin/index")(app);
 
 // error-handling
 app.on("error", (err, ctx) => {

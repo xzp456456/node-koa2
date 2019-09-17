@@ -1,14 +1,17 @@
 import Base from "./Base";
-import navBarModel from "../../models/api/index";
+import navBarModel from "../../models/api/index/navBar";
 class index extends Base {
   constructor() {
     super();
   }
+  async index(ctx) {
+    ctx.render('index')
+  }
   async navBar(ctx) {
     let arr = ctx.request.body.arr
-    try{
-        arr.forEach((item)=>{
-            await navBarModel
+     try{
+      await arr.forEach((item)=>{
+             navBarModel
             .updated({id:item.id},{$set:{name:item.name}})
         })
         ctx.body = { status: 1, data, msg: "更新成功" };
