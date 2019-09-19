@@ -9,9 +9,15 @@ const logger = require("koa-logger");
 const koajwt = require("koa-jwt");
 const session = require('koa-session');
 const { secret } = require("./config/index");
+const koaBody = require('koa-body');
 // error handler
 onerror(app);
-
+app.use(koaBody({
+  multipart: true,
+  formidable: {
+      maxFileSize: 200*1024*1024    // 设置上传文件大小最大限制，默认2M
+  }
+}));
 app.keys = ['some secret hurr'];
 const CONFIG = {
    key: 'koa:sess',   //cookie key (default is koa:sess)
