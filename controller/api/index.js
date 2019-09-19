@@ -7,6 +7,7 @@ class index extends Base {
   constructor() {
     super();
   }
+  //首页导航栏
   async navBar(ctx, next) {
     let data = await navBarModel.find();
     if (data) {
@@ -15,6 +16,7 @@ class index extends Base {
       ctx.body = { status: 0, data, msg: "查询失败" };
     }
   }
+  //团购
   async allBuy(ctx, next) {
     let data = await allBuyModel.find();
     if (data) {
@@ -23,6 +25,7 @@ class index extends Base {
       ctx.body = { status: 0, data, msg: "查询失败" };
     }
   }
+  //限时秒杀
   async timeRecom(ctx, next) {
     let data = await timeRecomModel.find();
     if (data) {
@@ -31,6 +34,7 @@ class index extends Base {
       ctx.body = { status: 0, data, msg: "查询失败" };
     }
   }
+   //用户推荐
   async recommend(ctx, next) {
     let data = await recommendModel.find();
     if (data) {

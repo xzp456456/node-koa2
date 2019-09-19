@@ -6,6 +6,7 @@ class Account extends Base {
     super();
     this.getUserInfo = this.getUserInfo.bind(this);
   }
+  //用户登陆
   async login(ctx, next) {
     const { mobile, password } = ctx.request.body;
     if (mobile == undefined || password == undefined) {
@@ -21,6 +22,7 @@ class Account extends Base {
       ctx.body = { status: 0, msg: "用户不存在或者密码错误" };
     }
   }
+  //用户注册
   async register(ctx, next) {
     const { mobile, password } = ctx.request.body;
     let params = { mobile, password };
@@ -36,6 +38,7 @@ class Account extends Base {
       ctx.body = { status: 0, msg: "用户已经被注册" };
     }
   }
+  //获取用户信息
   async getUserInfo(ctx, next) {
     const { id } = ctx.state.user;
     let data = await userModel.findById(id);

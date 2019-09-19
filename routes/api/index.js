@@ -14,6 +14,7 @@ module.exports = app => {
   router.get('/address',user.address)
   router.get('/timeRecom',index.timeRecom)
   router.get('/allBuy',index.allBuy)
+  router.post('/avatar',user.avatar)
   router.post('/register',Account.register)
   //router.post('/getUserInfo',Account.getUserInfo)
   app.use(router.routes()).use(router.allowedMethods());
