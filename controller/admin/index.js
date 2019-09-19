@@ -7,6 +7,7 @@ class index extends Base {
   async index(ctx) {
     ctx.render('index')
   }
+  //后台设置前端首页导航
   async navBar(ctx) {
     let arr = ctx.request.body.arr
      try{

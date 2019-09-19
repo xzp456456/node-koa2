@@ -4,6 +4,7 @@ class user extends Base {
   constructor() {
     super();
   }
+  //后台登陆
   async loginPage(ctx) {
     await ctx.render('login')
   }
