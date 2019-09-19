@@ -67,7 +67,7 @@ app.use(
     path: [/^\/login/, /^\/register/, /^\//, /\admin\/index/]
   })
 );
-require("./mongodb/db");
+
 require("./routes/api/index")(app);
 require("./routes/admin/index")(app);
 

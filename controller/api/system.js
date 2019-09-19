@@ -16,6 +16,7 @@ class system extends Base {
   }
   //版本控制
   async version(ctx, next) {
+    
     let data = await versionModel.find();
     if (data) {
       ctx.body = { status: 1, msg: "查询成功", data: data[0] };
@@ -25,6 +26,7 @@ class system extends Base {
   }
   //平台协议
   async getAgree(ctx) {
+    await new versionModel({version:'dsadsadas',agree:'dshahdsha'}).save();
     let data = await versionModel.find();
     if (data) {
       ctx.body = { status: 1, msg: "查询成功", data: { agree: data[0].agree } };

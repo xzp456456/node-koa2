@@ -1,4 +1,4 @@
-var mongoose = require("mongoose");
+var mongoose = require('../../../mongodb/db');
 var Schema = mongoose.Schema;
 const recommendSchema = new Schema({
   image: {
