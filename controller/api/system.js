@@ -1,6 +1,7 @@
 import Base from "./Base";
 import systemModel from "../../models/api/system/index";
 import versionModel from "../../models/api/system/version";
+import systemInfoModel from '../../models/api/system/info'
 class system extends Base {
   constructor() {
     super();
@@ -28,6 +29,15 @@ class system extends Base {
     let data = await versionModel.find();
     if (data) {
       ctx.body = { status: 1, msg: "查询成功", data: { agree: data[0].agree } };
+    } else {
+      ctx.body = { status: 0, msg: "查询失败" };
+    }
+  }
+  //系统消息
+  async systemInfo(ctx) {
+    let data = await systemInfoModel.find();
+    if (data) {
+      ctx.body = { status: 1, msg: "查询成功", data };
     } else {
       ctx.body = { status: 0, msg: "查询失败" };
     }
