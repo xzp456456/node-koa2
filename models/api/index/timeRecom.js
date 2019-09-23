@@ -13,6 +13,6 @@ const timeRecomSchema = new Schema({
 
 timeRecomSchema.index({ id: 1 });
 
-const timeRecomModel = mongoose.model("timeRecoms", timeRecomSchema);
+const timeRecomModel = mongoose.model("timerecoms", timeRecomSchema);
 
 export default timeRecomModel;

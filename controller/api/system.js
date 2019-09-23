@@ -1,6 +1,7 @@
 import Base from "./Base";
 import systemModel from "../../models/api/system/index";
 import versionModel from "../../models/api/system/version";
+import hotModel from '../../models/api/system/hot'
 class system extends Base {
   constructor() {
     super();
@@ -34,6 +35,14 @@ class system extends Base {
       ctx.body = { status: 0, msg: "查询失败" };
     }
   }
+  async hot(ctx){
+    let data = await hotModel.find();
+    if (data) {
+      ctx.body = { status: 1, msg: "查询成功", data };
+    } else {
+      ctx.body = { status: 0, msg: "查询失败" };
+    }
+  }
 }
-
+  
 export default new system();
