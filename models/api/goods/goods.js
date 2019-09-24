@@ -5,6 +5,16 @@ const goodsSchema = new Schema({
     type: String,
     required:true
   },
+  seller_id:{
+    type: String,
+    ref:'sellers',
+    required:true
+  },
+  cate_id:{
+    type: String,
+    ref:'sellercates',
+    required:true
+  },
   name:{
     type: String,
     required:true
