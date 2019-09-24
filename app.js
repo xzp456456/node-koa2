@@ -10,6 +10,7 @@ const koajwt = require("koa-jwt");
 const session = require('koa-session');
 const { secret } = require("./config/index");
 const koaBody = require('koa-body');
+const { jwtNoCheck } = require('./config/index')
 // error handler
 onerror(app);
 app.use(koaBody({
@@ -71,21 +72,7 @@ app.use(
   koajwt({
     secret: secret
   }).unless({
-    path: [
-      '/admin/index',
-      '/admin/AccountLogin',
-      '/admin/login',
-      '/api/navBar',
-      '/api/recommend',
-      '/api/version',
-      '/api/agree',
-      '/api/login',
-      '/api/timeRecom',
-      '/api/register',
-      '/api/seller',
-      '/api/hot',
-      '/user/changPassword'
-    ]
+    path: jwtNoCheck
   })
 );
 
