@@ -5,7 +5,7 @@ class user extends Base {
     super();
   }
   //后台登陆
-  async loginPage(ctx) {
+  async loginPage(ctx,next) {
     await ctx.render('login')
   }
   async login(ctx, next) {

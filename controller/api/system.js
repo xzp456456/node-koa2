@@ -42,6 +42,15 @@ class system extends Base {
       ctx.body = { status: 0, msg: "查询失败" };
     }
   }
+  //订单消息
+  async goodsInfo(ctx){
+    let data = await systemInfoModel.find();
+    if (data) {
+      ctx.body = { status: 1, msg: "查询成功", data };
+    } else {
+      ctx.body = { status: 0, msg: "查询失败" };
+    }
+  }
 }
 
 export default new system();

@@ -1,6 +1,6 @@
 import Base from "./Base";
-import userModel from "../../models/api/user/user";
 import addressModel from "../../models/api/user/address";
+import orderModel from "../../models/api/user/order";
 import fs from "fs";
 import path from "path" ;
 class user extends Base {
@@ -38,6 +38,27 @@ class user extends Base {
       status: 1,
       data: { url: "/public/upload/" + `${timestamp}.png` }
     });
+  }
+   // 获取我的商品列表
+   async list(ctx, next) {
+    let user_id = ctx.state.user.id;
+    let data = await orderModel.find({ user_id });
+    if (data) {
+      ctx.body = { status: 1, data, msg: "查询成功" };
+    } else {
+      ctx.body = { status: 0, data, msg: "查询失败" };
+    }
+  }
+  // 获取我的商品详情
+  async orderDetail(ctx, next) {
+    let order_id = ctx.query.order_id;
+    let user_id = ctx.state.user.id;
+    let data = await orderDetailModel.find({ order_id, user_id });
+    if (data) {
+      ctx.body = { status: 1, data, msg: "查询成功" };
+    } else {
+      ctx.body = { status: 0, data, msg: "查询失败" };
+    }
   }
 }
 

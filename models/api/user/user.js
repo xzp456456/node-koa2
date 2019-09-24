@@ -14,6 +14,12 @@ const userSchema = new Schema({
         },
         avatar:{
             type:String
+        },
+        yaoqing:{
+            type:Number
+        },
+        vip:{
+            type:Number
         }
 })
 

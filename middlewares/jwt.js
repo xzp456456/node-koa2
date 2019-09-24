@@ -1,9 +1,9 @@
 const jwt = require('jsonwebtoken');
 const { secret }  = require('../config/index')
-const  getToken = (id) => {
+const  getToken = ( id ) => {
     return new Promise((reslove,reject)=>{
         jwt.sign({name: 'user',id}, secret,(err,token)=>{
-            if(err){
+            if( err ){
                 reject(err)
             }else{
                 reslove("Bearer "+token)
@@ -13,7 +13,7 @@ const  getToken = (id) => {
 }
 
 
-const checkToken = (token) =>{
+const checkToken = ( token ) =>{
     return new Promise((reslove,reject)=>{
         jwt.verify(token, secret, (error, decoded) => {
             if(error) {
