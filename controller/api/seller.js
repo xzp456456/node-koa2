@@ -11,9 +11,10 @@ class seller extends Base {
         if (data) {
             ctx.body = { status: 1, data, msg: '查询成功' }
         } else {
-            ctx.body = { status: 1, data, msg: '查询成功' }
+            ctx.body = { status: 0, data, msg: '查询失败' }
         }
     }
+    // 店铺产品分类
     async sellerCate(ctx) {
         let seller_id = ctx.query.seller_id
         let data = await sellerCateModel.find({ seller_id })

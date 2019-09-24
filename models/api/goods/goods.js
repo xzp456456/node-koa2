@@ -3,38 +3,53 @@ var Schema = mongoose.Schema;
 const goodsSchema = new Schema({
   image: {
     type: String,
-    required:true
+    required: true
   },
-  seller_id:{
+  banner: [
+    {
+      type: String
+    }
+  ],
+  seller_id: {
     type: String,
-    ref:'sellers',
-    required:true
+    ref: "sellers",
+    required: true
   },
-  cate_id:{
+  cate_id: {
     type: String,
-    ref:'sellercates',
-    required:true
+    ref: "sellercates",
+    required: true
   },
-  name:{
+  name: {
     type: String,
-    required:true
+    required: true
   },
   price: {
     type: String,
-    required:true
+    required: true
   },
-  desc:{
+  desc: {
     type: String,
-    required:true
+    required: true
   },
-  weight:{
+  weight: {
     type: String,
-    required:true
+    required: true
   },
-  original_price:{
+  original_price: {
     type: String,
-    required:true
-  }
+    required: true
+  },
+  desc_imgae: [
+    {
+      image: {
+        type: String
+      },
+      text: {
+        type: String
+      }
+    }
+  ]
 });
 
 goodsSchema.index({ id: 1 });

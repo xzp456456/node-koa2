@@ -5,6 +5,11 @@ const sellerSchema = new Schema({
     type: String,
     required:true
   },
+  user_id:{
+    type: String,
+    ref:'users',
+    required:true
+  },
   xing:{
     type: String
   },

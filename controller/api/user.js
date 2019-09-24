@@ -3,6 +3,7 @@ import addressModel from "../../models/api/user/address";
 import orderModel from "../../models/api/user/order";
 import fs from "fs";
 import path from "path";
+import userModel from '../../models/api/user/user'
 import historyModel from "../../models/api/user/history";
 class user extends Base {
   constructor() {
@@ -79,7 +80,7 @@ class user extends Base {
       ctx.body = { status: 0, msg: "修改失败" };
     }
   }
-   // 获取我的商品列表
+   // 获取我的订单商品列表
    async list(ctx, next) {
     let user_id = ctx.state.user.id;
     let data = await orderModel.find({ user_id });
@@ -89,7 +90,7 @@ class user extends Base {
       ctx.body = { status: 0, data, msg: "查询失败" };
     }
   }
-  // 获取我的商品详情
+  // 获取我的订单商品详情
   async orderDetail(ctx, next) {
     let order_id = ctx.query.order_id;
     let user_id = ctx.state.user.id;
