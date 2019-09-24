@@ -5,7 +5,7 @@ class index extends Base {
     super();
   }
   async index(ctx) {
-    ctx.render('index')
+    return ctx.render('index')
   }
   //后台设置前端首页导航
   async navBar(ctx) {

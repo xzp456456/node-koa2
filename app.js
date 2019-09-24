@@ -15,18 +15,18 @@ onerror(app);
 app.use(koaBody({
   multipart: true,
   formidable: {
-      maxFileSize: 200*1024*1024    // 设置上传文件大小最大限制，默认2M
+    maxFileSize: 200 * 1024 * 1024    // 设置上传文件大小最大限制，默认2M
   }
 }));
 app.keys = ['some secret hurr'];
 const CONFIG = {
-   key: 'koa:sess',   //cookie key (default is koa:sess)
-   maxAge: 86400000,  // cookie的过期时间 maxAge in ms (default is 1 days)
-   overwrite: true,  //是否可以overwrite    (默认default true)
-   httpOnly: false, //cookie是否只有服务器端可以访问 httpOnly or not (default true)
-   signed: true,   //签名默认true
-   rolling: false,  //在每次请求时强行设置cookie，这将重置cookie过期时间（默认：false）
-   renew: false,  //(boolean) renew session when session is nearly expired,
+  key: 'koa:sess',   //cookie key (default is koa:sess)
+  maxAge: 86400000,  // cookie的过期时间 maxAge in ms (default is 1 days)
+  overwrite: true,  //是否可以overwrite    (默认default true)
+  httpOnly: false, //cookie是否只有服务器端可以访问 httpOnly or not (default true)
+  signed: true,   //签名默认true
+  rolling: false,  //在每次请求时强行设置cookie，这将重置cookie过期时间（默认：false）
+  renew: false,  //(boolean) renew session when session is nearly expired,
 };
 app.use(session(CONFIG, app));
 // middlewares
@@ -55,6 +55,7 @@ app.use(async (ctx, next) => {
 // routes
 app.use((ctx, next) => {
   return next().catch(err => {
+    console.log(err)
     if (401 == err.status) {
       ctx.status = 401;
       ctx.body = {
@@ -70,10 +71,24 @@ app.use(
   koajwt({
     secret: secret
   }).unless({
-    path: [/^\/login/, /^\/register/, /^\//, /\admin\/index/]
+    path: [
+      '/admin/index',
+      '/admin/AccountLogin',
+      '/admin/login',
+      '/api/navBar',
+      '/api/recommend',
+      '/api/version',
+      '/api/agree',
+      '/api/login',
+      '/api/timeRecom',
+      '/api/register',
+      '/api/seller',
+      '/api/hot',
+      '/user/changPassword'
+    ]
   })
 );
-require("./mongodb/db");
+
 require("./routes/api/index")(app);
 require("./routes/admin/index")(app);
 

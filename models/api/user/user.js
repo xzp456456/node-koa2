@@ -20,6 +20,9 @@ const userSchema = new Schema({
         },
         vip:{
             type:Number
+        },
+        name:{
+            type:String
         }
 })
 

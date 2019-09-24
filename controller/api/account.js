@@ -4,7 +4,6 @@ import userModel from "../../models/api/user/user";
 class Account extends Base {
   constructor() {
     super();
-    this.getUserInfo = this.getUserInfo.bind(this);
   }
   //用户登陆
   async login(ctx, next) {
@@ -38,16 +37,21 @@ class Account extends Base {
       ctx.body = { status: 0, msg: "用户已经被注册" };
     }
   }
-  //获取用户信息
-  async getUserInfo(ctx, next) {
-    const { id } = ctx.state.user;
-    let data = await userModel.findById(id);
-    if (data) {
-      ctx.body = { status: 0, data, msg: "查询成功" };
+  async changePassword(ctx) {
+    const { mobile, password, new_password } = ctx.request.body
+    let user = await userModel.findOne({ mobile, password });
+    if (user) {
+      let data = await userModel.update({ password }, { $set: { password: new_password } })
+      if (data.ok == 1) {
+        ctx.body = { status: 1, msg: '密码修改成功' }
+      } else {
+        ctx.body = { status: 0, msg: '密码修改失败' }
+      }
     } else {
-      ctx.body = { status: -10086, msg: "登陆异常" };
+      ctx.body = { status: 0, msg: '用户不存在,或者密码错误' }
     }
   }
+
 }
 
 export default new Account();
