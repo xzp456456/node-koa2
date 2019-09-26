@@ -6,6 +6,10 @@ const orderSchema = new Schema({
     ref: "users",
     required: true
   },
+  order_id:{
+    type: String,
+    required: true
+  },
   seller_id: {
     type: String,
     required: true
@@ -23,6 +27,7 @@ const orderSchema = new Schema({
     required: true
   },
   status: {
+    // 0代付款 1待发货 2待收回 3已完成 4已关闭
     type: Number,
     required: true
   },

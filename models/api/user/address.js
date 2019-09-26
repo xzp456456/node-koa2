@@ -2,7 +2,9 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 const addressSchema = new Schema({
   user_id: {
-    type: String
+    type: String,
+    ref:'users',
+    required:true
   },
   address: {
     type: String,

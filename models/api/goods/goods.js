@@ -40,7 +40,7 @@ const goodsSchema = new Schema({
     type: String,
     required: true
   },
-  desc_imgae: [
+  desc_image: [
     {
       image: {
         type: String
